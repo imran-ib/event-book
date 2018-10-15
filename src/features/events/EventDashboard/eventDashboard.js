@@ -9,6 +9,7 @@ import EventForm from "../EventForm/eventForm";
 export class EventDashboard extends Component {
   state = {
     events: events,
+    selectedEvent: null,
     isOpen: false
   };
   handdleCakncelEventForm = () => {
@@ -28,7 +29,37 @@ export class EventDashboard extends Component {
     newEvent.hostPhotoURL = "./assets/images/user.png";
     this.setState({
       events: newCreatedEvent,
-      isOpen: false
+      selectedEvent: null,
+      isOpen: !this.state.isOpen
+    });
+  };
+
+  handlleUpdateEvent = updatedEvent => {
+    this.setState({
+      events: this.state.events.map(event => {
+        if (event.id === updatedEvent.id) {
+          return Object.assign({}, updatedEvent);
+        } else {
+          return event;
+        }
+      }),
+      isOpen: false,
+      selectedEvent: null
+    });
+  };
+
+  handdleViewForm = EventToBeUpdate => () => {
+    this.setState({
+      selectedEvent: EventToBeUpdate,
+      isOpen: true
+    });
+  };
+  handdleDeleteEvent = eventId => () => {
+    const filteredEvents = this.state.events.filter(e => {
+      return e.id !== eventId;
+    });
+    this.setState({
+      events: filteredEvents
     });
   };
 
@@ -38,7 +69,12 @@ export class EventDashboard extends Component {
       <Grid>
         <Grid.Column width={10}>
           {events.map(event => (
-            <EventList key={event.id} event={event} />
+            <EventList
+              handdleDeleteEvent={this.handdleDeleteEvent}
+              handdleViewForm={this.handdleViewForm}
+              key={event.id}
+              event={event}
+            />
           ))}
         </Grid.Column>
         <Grid.Column width={6}>
@@ -49,6 +85,8 @@ export class EventDashboard extends Component {
           />
           {isOpen && (
             <EventForm
+              handlleUpdateEvent={this.handlleUpdateEvent}
+              selectedEvent={this.state.selectedEvent}
               handdleCreateNewEvent={this.handdleCreateNewEvent}
               handdleCakncelEventForm={this.handdleCakncelEventForm}
             />
@@ -63,7 +101,7 @@ const events = [
   {
     id: "1",
     title: "Trip to Tower of London",
-    date: "2018-03-27T11:00:00+00:00",
+    date: "2018-03-27",
     category: "culture",
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus sollicitudin ligula eu leo tincidunt, quis scelerisque magna dapibus. Sed eget ipsum vel arcu vehicula ullamcorper.",
@@ -87,7 +125,7 @@ const events = [
   {
     id: "2",
     title: "Trip to Punch and Judy Pub",
-    date: "2018-03-28T14:00:00+00:00",
+    date: "2018-03-28",
     category: "drinks",
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus sollicitudin ligula eu leo tincidunt, quis scelerisque magna dapibus. Sed eget ipsum vel arcu vehicula ullamcorper.",

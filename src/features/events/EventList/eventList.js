@@ -5,7 +5,11 @@ export class EeventList extends Component {
   render() {
     return (
       <div>
-        <EventListItem event={this.props.event} />
+        <EventListItem
+          handdleDeleteEvent={this.props.handdleDeleteEvent}
+          handdleViewForm={this.props.handdleViewForm}
+          event={this.props.event}
+        />
       </div>
     );
   }
