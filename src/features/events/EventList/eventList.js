@@ -7,7 +7,6 @@ export class EeventList extends Component {
       <div>
         <EventListItem
           handdleDeleteEvent={this.props.handdleDeleteEvent}
-          handdleViewForm={this.props.handdleViewForm}
           event={this.props.event}
         />
       </div>

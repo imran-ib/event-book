@@ -37,6 +37,7 @@ export class Navbar extends Component {
           {authenticated && (
             <Menu.Item>
               <Button
+                as={Link}
                 to="/createEvent"
                 floated="right"
                 positive
