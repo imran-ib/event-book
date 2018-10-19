@@ -29,13 +29,13 @@ class App extends Component {
               <Container className="main">
                 <Switch>
                   <Route exact path="/events" component={EventDashboard} />
-                  <Route path="/event/:id" component={EventDetailPage} />
+                  <Route exact path="/event/:id" component={EventDetailPage} />
+                  <Route exact path="/people" component={PeopleDashboard} />
+                  <Route exact path="/settings" component={SettingsDashboard} />
+                  <Route exact path="/profile/:id" component={UserDetail} />
+                  <Route exact path="/createEvent" component={EventForm} />
                   <Route path="/manage/:id" component={EventForm} />
-                  <Route path="/people" component={PeopleDashboard} />
-                  <Route path="/settings" component={SettingsDashboard} />
-                  <Route path="/profile/:id" component={UserDetail} />
-                  <Route path="/createEvent" component={EventForm} />
-                  <Route path="/test" component={Test} />
+                  <Route exact path="/test" component={Test} />
                 </Switch>
               </Container>
             </div>

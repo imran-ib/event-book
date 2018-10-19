@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import { Segment, Image, Item, Header, Button } from "semantic-ui-react";
 
 const EventDetailedHeader = ({ event }) => {
-  console.log(event);
   return (
     <Segment.Group>
       <Segment basic attached="top" style={{ padding: "0" }}>
