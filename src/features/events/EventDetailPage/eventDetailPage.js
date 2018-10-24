@@ -10,7 +10,7 @@ import EventDetailedSidebar from "./EventDetailedSidebar";
 
 export class EventDetail extends Component {
   render() {
-    const { event } = this.props;
+    const { event, attendees } = this.props;
     return (
       <Grid>
         <Grid.Column width={10}>
@@ -19,7 +19,7 @@ export class EventDetail extends Component {
           <EventDetailedChat />
         </Grid.Column>
         <Grid.Column width={6}>
-          <EventDetailedSidebar attendees={event.attendees} />
+          {attendees && <EventDetailedSidebar attendees={event.attendees} />}
         </Grid.Column>
       </Grid>
     );

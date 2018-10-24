@@ -27,7 +27,7 @@ export class Navbar extends Component {
         <Container>
           <Menu.Item as={Link} to="/" header>
             <img src="/assets/images/logo.png" alt="logo" />
-            Re-vents
+            Event Book
           </Menu.Item>
           <Menu.Item as={NavLink} to="/events" name="Events" />
           <Menu.Item as={NavLink} to="/test" name="Test" />

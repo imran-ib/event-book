@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { updateEvent } from "../eventActions";
+import { updateEvent, deleteEvent } from "../eventActions";
 import { Grid } from "semantic-ui-react";
 //Components
 import EventList from "../EventList/eventList";
@@ -34,7 +34,8 @@ const mapStateToProps = (state, ownProps) => {
 };
 
 const actions = {
-  updateEvent
+  updateEvent,
+  deleteEvent
 };
 
 export default connect(

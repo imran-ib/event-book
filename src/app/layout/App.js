@@ -28,14 +28,14 @@ class App extends Component {
               <Navbar />
               <Container className="main">
                 <Switch>
-                  <Route exact path="/events" component={EventDashboard} />
-                  <Route exact path="/event/:id" component={EventDetailPage} />
-                  <Route exact path="/people" component={PeopleDashboard} />
-                  <Route exact path="/settings" component={SettingsDashboard} />
-                  <Route exact path="/profile/:id" component={UserDetail} />
-                  <Route exact path="/createEvent" component={EventForm} />
+                  <Route path="/events" component={EventDashboard} />
+                  <Route path="/event/:id" component={EventDetailPage} />
                   <Route path="/manage/:id" component={EventForm} />
-                  <Route exact path="/test" component={Test} />
+                  <Route path="/people" component={PeopleDashboard} />
+                  <Route path="/settings" component={SettingsDashboard} />
+                  <Route path="/profile/:id" component={UserDetail} />
+                  <Route path="/createEvent" component={EventForm} />
+                  <Route path="/test" component={Test} />
                 </Switch>
               </Container>
             </div>
@@ -47,3 +47,5 @@ class App extends Component {
 }
 
 export default App;
+
+// AIzaSyAU4OfA4t7er9vQfE5Z50_MLFwOOiqxrnw
