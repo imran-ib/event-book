@@ -1,3 +1,5 @@
+import { toastr } from "react-redux-toastr";
+
 import {
   UPDATE_EVENT,
   ADD_EVENT,
@@ -12,22 +14,24 @@ import {
 } from "../async/asyncActions";
 import { fetchSampleData } from "../../app/data/mockApi";
 
-export const createEvent = event => {
-  return {
+export const createEvent = event => async dispatch => {
+  dispatch({
     type: ADD_EVENT,
     payload: {
       event
     }
-  };
+  });
+  toastr.success("Success!", "The event has been created");
 };
 
-export const updateEvent = event => {
-  return {
+export const updateEvent = event => async dispatch => {
+  dispatch({
     type: UPDATE_EVENT,
     payload: {
       event
     }
-  };
+  });
+  toastr.success("Success!", "The event has been updated");
 };
 
 export const deleteEvent = eventId => {
