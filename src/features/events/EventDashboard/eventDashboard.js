@@ -4,12 +4,14 @@ import { updateEvent, deleteEvent } from "../eventActions";
 import { Grid } from "semantic-ui-react";
 //Components
 import EventList from "../EventList/eventList";
+import LoadingComponent from "../../../app/layout/loadingComponent";
 
 class EventDashboard extends Component {
   handdleDeleteEvent = eventId => () => this.props.deleteEvent(eventId);
 
   render() {
-    const { events } = this.props;
+    const { events, loading } = this.props;
+    if (loading) return <LoadingComponent inverted={true} />;
     return (
       <Grid>
         <Grid.Column width={10}>
@@ -29,7 +31,8 @@ class EventDashboard extends Component {
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    events: state.events
+    events: state.events,
+    loading: state.async.loading
   };
 };
 
