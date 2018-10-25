@@ -12,11 +12,13 @@ import UserDetail from "../../features/UserDetail/userDetailPage";
 import EventForm from "../../features/events/EventForm/eventForm";
 import SettingsDashboard from "../../features/Settings/SettingDashboard";
 import Test from "../../features/testComponet/Test";
+import ModalsManager from "../../features/modals/modalManager";
 
 class App extends Component {
   render() {
     return (
       <div>
+        <ModalsManager />
         <Switch>
           <Route exact path="/" component={Home} />
         </Switch>

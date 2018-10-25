@@ -4,11 +4,10 @@ import { Link } from "react-router-dom";
 
 export class SignedIn extends Component {
   render() {
-    console.log(this.props);
     return (
       <Menu.Item position="right">
         <Image avatar spaced="right" src="/assets/images/user.png" />
-        <Dropdown pointing="top left" text="Username">
+        <Dropdown pointing="top left" text={this.props.currentUser}>
           <Dropdown.Menu>
             <Dropdown.Item text="Create Event" icon="plus" />
             <Dropdown.Item text="My Events" icon="calendar" />
