@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { firestoreConnect } from "react-redux-firebase";
+
 import { updateEvent, deleteEvent } from "../eventActions";
 import { Grid } from "semantic-ui-react";
 //Components
@@ -16,13 +18,14 @@ class EventDashboard extends Component {
     return (
       <Grid>
         <Grid.Column width={10}>
-          {events.map(event => (
-            <EventList
-              handdleDeleteEvent={this.handdleDeleteEvent}
-              key={event.id}
-              event={event}
-            />
-          ))}
+          {events &&
+            events.map(event => (
+              <EventList
+                handdleDeleteEvent={this.handdleDeleteEvent}
+                key={event.id}
+                event={event}
+              />
+            ))}
         </Grid.Column>
         <Grid.Column width={6}>
           <EventActivity />
@@ -34,7 +37,7 @@ class EventDashboard extends Component {
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    events: state.events,
+    events: state.firestore.ordered.events,
     loading: state.async.loading
   };
 };
@@ -47,4 +50,4 @@ const actions = {
 export default connect(
   mapStateToProps,
   actions
-)(EventDashboard);
+)(firestoreConnect([{ collection: "events" }])(EventDashboard));

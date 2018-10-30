@@ -12,10 +12,8 @@ import "react-redux-toastr/lib/css/react-redux-toastr.min.css";
 
 import App from "./app/layout/App";
 import * as serviceWorker from "./serviceWorker";
-import { loadEvents } from "../src/features/events/eventActions";
 
 const store = configureStore();
-store.dispatch(loadEvents());
 
 ReactDOM.render(
   <Provider store={store}>

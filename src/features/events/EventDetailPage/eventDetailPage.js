@@ -11,18 +11,20 @@ import EventDetailedSidebar from "./EventDetailedSidebar";
 export class EventDetail extends Component {
   render() {
     const { event, attendees } = this.props;
-    return (
-      <Grid>
-        <Grid.Column width={10}>
-          <EventDetailedHeader event={event} />
-          <EventDetailedInfo event={event} />
-          <EventDetailedChat />
-        </Grid.Column>
-        <Grid.Column width={6}>
-          {attendees && <EventDetailedSidebar attendees={event.attendees} />}
-        </Grid.Column>
-      </Grid>
-    );
+    if (event) {
+      return (
+        <Grid>
+          <Grid.Column width={10}>
+            <EventDetailedHeader event={event} />
+            <EventDetailedInfo event={event} />
+            <EventDetailedChat />
+          </Grid.Column>
+          <Grid.Column width={6}>
+            {attendees && <EventDetailedSidebar attendees={event.attendees} />}
+          </Grid.Column>
+        </Grid>
+      );
+    }
   }
 }
 
@@ -36,7 +38,7 @@ const mapState = (state, prevProps) => {
 
   //check if the event eventId exist
   if (eventId && state.events.length > 0) {
-    event = state.events.filter(event => event.id !== eventId)[0];
+    event = state.events.filter(event => event.id === eventId)[0];
   }
   return {
     event
