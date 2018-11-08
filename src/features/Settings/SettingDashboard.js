@@ -1,6 +1,8 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 import { Grid } from "semantic-ui-react";
 import { Switch, Route, Redirect } from "react-router-dom";
+import { updateProfile } from "../User/userActions";
 
 //Settings Components
 import SettingsNav from "./SettingsNav";
@@ -9,17 +11,37 @@ import Account from "./Account";
 import BasicPage from "./BasicPage";
 import PhotosPage from "./PhotosPage";
 
-export class SettingsDashboard extends Component {
+const actions = {
+  updateProfile
+};
+
+class SettingsDashboard extends Component {
   render() {
     return (
       <Grid>
         <Grid.Column width={12}>
           <Switch>
             <Redirect exact from="settings" to="settings/basic" />
-            <Route path="/settings/about" component={About} />
-            <Route path="/settings/basic" component={BasicPage} />
-            <Route path="/settings/photos" component={PhotosPage} />
-            <Route path="/settings/account" component={Account} />
+            <Route
+              path="/settings/about"
+              render={() => (
+                <About
+                  updateProfile={this.props.updateProfile}
+                  initialValues={this.props.user}
+                />
+              )}
+            />
+            <Route
+              path="/settings/basic"
+              render={() => (
+                <BasicPage
+                  updateProfile={this.props.updateProfile}
+                  initialValues={this.props.user}
+                />
+              )}
+            />
+            <Route path="/settings/photos" render={() => <PhotosPage />} />
+            <Route path="/settings/account" render={() => <Account />} />
           </Switch>
         </Grid.Column>
 
@@ -30,5 +52,11 @@ export class SettingsDashboard extends Component {
     );
   }
 }
+const mapState = state => ({
+  user: state.firebase.profile
+});
 
-export default SettingsDashboard;
+export default connect(
+  mapState,
+  actions
+)(SettingsDashboard);
