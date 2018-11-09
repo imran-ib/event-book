@@ -8,7 +8,7 @@ import Navbar from "../../features/nav/NavBar/navbar";
 import Home from "../../features/Home/Home";
 import EventDetailPage from "../../features/events/EventDetailPage/eventDetailPage";
 import PeopleDashboard from "../../features/User/PeopleDashboard/PeopleDashboard";
-import UserDetail from "../../features/UserDetail/userDetailPage";
+import UserDetail from "../../features/User/UserDetail/userDetailPage";
 import EventForm from "../../features/events/EventForm/eventForm";
 import SettingsDashboard from "../../features/Settings/SettingDashboard";
 import Test from "../../features/testComponet/Test";
